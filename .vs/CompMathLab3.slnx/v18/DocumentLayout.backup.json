@@ -1,0 +1,129 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{39FDAE72-F899-42B8-BA9A-5386E1DAC35F}|CompMathLab3.csproj|C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{39FDAE72-F899-42B8-BA9A-5386E1DAC35F}|CompMathLab3.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39FDAE72-F899-42B8-BA9A-5386E1DAC35F}|CompMathLab3.csproj|C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\zeydelmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39FDAE72-F899-42B8-BA9A-5386E1DAC35F}|CompMathLab3.csproj|solutionrelative:zeydelmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39FDAE72-F899-42B8-BA9A-5386E1DAC35F}|CompMathLab3.csproj|c:\\users\\\u044F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\compmathlab3\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39FDAE72-F899-42B8-BA9A-5386E1DAC35F}|CompMathLab3.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39FDAE72-F899-42B8-BA9A-5386E1DAC35F}|CompMathLab3.csproj|C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\langrangemethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39FDAE72-F899-42B8-BA9A-5386E1DAC35F}|CompMathLab3.csproj|solutionrelative:langrangemethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39FDAE72-F899-42B8-BA9A-5386E1DAC35F}|CompMathLab3.csproj|C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\gaussianmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39FDAE72-F899-42B8-BA9A-5386E1DAC35F}|CompMathLab3.csproj|solutionrelative:gaussianmethod.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T02:15:46.335Z",
+              "IsPinned": true,
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ZeydelMethod.cs",
+              "DocumentMoniker": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\ZeydelMethod.cs",
+              "RelativeDocumentMoniker": "ZeydelMethod.cs",
+              "ToolTip": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\ZeydelMethod.cs",
+              "RelativeToolTip": "ZeydelMethod.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAgwGIAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T02:18:08.749Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GaussianMethod.cs",
+              "DocumentMoniker": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\GaussianMethod.cs",
+              "RelativeDocumentMoniker": "GaussianMethod.cs",
+              "ToolTip": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\GaussianMethod.cs",
+              "RelativeToolTip": "GaussianMethod.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T02:18:07.685Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{73068c07-fba1-453f-99ae-6edf972119b2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAI4AAAAAAAAAAADwv6MAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T02:16:16.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LangrangeMethod.cs",
+              "DocumentMoniker": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\LangrangeMethod.cs",
+              "RelativeDocumentMoniker": "LangrangeMethod.cs",
+              "ToolTip": "C:\\Users\\\u042F\u0440\u043E\u0441\u043B\u0430\u0432\\source\\repos\\CompMathLab3\\LangrangeMethod.cs",
+              "RelativeToolTip": "LangrangeMethod.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAowBcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T02:39:39.906Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 58,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+C:\Users\Ярослав\source\repos\CompMathLab3\bin\Debug\CompMathLab3.exe.config
+C:\Users\Ярослав\source\repos\CompMathLab3\bin\Debug\CompMathLab3.exe
+C:\Users\Ярослав\source\repos\CompMathLab3\bin\Debug\CompMathLab3.pdb
+C:\Users\Ярослав\source\repos\CompMathLab3\obj\Debug\CompMathLab3.csproj.AssemblyReference.cache
+C:\Users\Ярослав\source\repos\CompMathLab3\obj\Debug\CompMathLab3.Form1.resources
+C:\Users\Ярослав\source\repos\CompMathLab3\obj\Debug\CompMathLab3.Properties.Resources.resources
+C:\Users\Ярослав\source\repos\CompMathLab3\obj\Debug\CompMathLab3.csproj.GenerateResource.cache
+C:\Users\Ярослав\source\repos\CompMathLab3\obj\Debug\CompMathLab3.csproj.CoreCompileInputs.cache
+C:\Users\Ярослав\source\repos\CompMathLab3\obj\Debug\CompMathLab3.exe
+C:\Users\Ярослав\source\repos\CompMathLab3\obj\Debug\CompMathLab3.pdb
