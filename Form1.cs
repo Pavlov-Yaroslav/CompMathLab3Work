@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -15,107 +9,101 @@ namespace CompMathLab3
     {
         private double[] xValues = { 8, 10, 12, 14, 16 };
         private double[] yValues = { 4, 9, 5, 1, 16 };
-
-        // Коэффициенты многочлена Гаусса (из решения системы)
-        private double a0 = 64;
-        private double a1 = -54.6666666666667;
-        private double a2 = 11.8958333333333;
-        private double a3 = -0.958333333333333;
-        private double a4 = 0.0260416666666667;
+        private double[] interpolationCoeffs;
+        private double[] smoothingCoeffs;
 
         public Form1()
         {
             InitializeComponent();
+            CalculateInterpolationCoefficients();
+            CalculateSmoothingCoefficients();
             DrawAllGraphs();
+        }
+
+        private void CalculateInterpolationCoefficients()
+        {
+            float[] coeffs = CompMathLab2.GaussianMethod.SolveInterpolationSystem(xValues, yValues);
+            interpolationCoeffs = Array.ConvertAll(coeffs, item => (double)item);
+        }
+
+        private void CalculateSmoothingCoefficients()
+        {
+            int degree = 2; // Степень для сглаживающего метода
+            float[] xFloat = Array.ConvertAll(xValues, item => (float)item);
+            float[] yFloat = Array.ConvertAll(yValues, item => (float)item);
+
+            var leastSquares = new CompMathLab2.LeastSquaresMethod(xFloat, yFloat, degree);
+            float[] coeffs = leastSquares.Run();
+            smoothingCoeffs = Array.ConvertAll(coeffs, item => (double)item);
         }
 
         private void DrawAllGraphs()
         {
-            DrawChart1(); // Гаусс на chart1
-            DrawChart2(); // Лагранж на chart2
-            DrawChart3(); // Сравнение на chart3
+            DrawChart1();
+            DrawChart2();
+            DrawChart3();
+            DrawChart4();
+        }
+
+        private void SetupChartArea(Chart chart)
+        {
+            if (chart.ChartAreas.Count == 0)
+                chart.ChartAreas.Add(new ChartArea());
+
+            chart.ChartAreas[0].AxisX.Title = "x";
+            chart.ChartAreas[0].AxisY.Title = "y";
+            chart.ChartAreas[0].AxisX.Minimum = 7;
+            chart.ChartAreas[0].AxisX.Maximum = 17;
+            chart.ChartAreas[0].AxisY.Minimum = -5;
+            chart.ChartAreas[0].AxisY.Maximum = 20;
+        }
+
+        private void AddPointSeries(Chart chart)
+        {
+            Series pointSeries = new Series("Исходные точки");
+            pointSeries.ChartType = SeriesChartType.Point;
+            pointSeries.Color = Color.Red;
+            pointSeries.MarkerSize = 8;
+            pointSeries.MarkerStyle = MarkerStyle.Circle;
+
+            for (int i = 0; i < xValues.Length; i++)
+            {
+                pointSeries.Points.AddXY(xValues[i], yValues[i]);
+            }
+
+            chart.Series.Add(pointSeries);
         }
 
         private void DrawChart1()
         {
             chart1.Series.Clear();
-            
-            // Настройка области
-            if (chart1.ChartAreas.Count == 0)
-                chart1.ChartAreas.Add(new ChartArea());
-            
-            chart1.ChartAreas[0].AxisX.Title = "x";
-            chart1.ChartAreas[0].AxisY.Title = "y";
-            chart1.ChartAreas[0].AxisX.Minimum = 7;
-            chart1.ChartAreas[0].AxisX.Maximum = 17;
-            chart1.ChartAreas[0].AxisY.Minimum = -5;
-            chart1.ChartAreas[0].AxisY.Maximum = 20;
+            SetupChartArea(chart1);
 
-            // Серия для графика Гаусса
-            Series gaussSeries = new Series("Метод Гаусса");
-            gaussSeries.ChartType = SeriesChartType.Line;
-            gaussSeries.Color = Color.Blue;
-            gaussSeries.BorderWidth = 2;
+            Series interpolationSeries = new Series("Интерполяционный полином (решение системы 3.1)");
+            interpolationSeries.ChartType = SeriesChartType.Line;
+            interpolationSeries.Color = Color.Blue;
+            interpolationSeries.BorderWidth = 2;
 
-            // Серия для точек
-            Series pointSeries = new Series("Исходные точки");
-            pointSeries.ChartType = SeriesChartType.Point;
-            pointSeries.Color = Color.Red;
-            pointSeries.MarkerSize = 8;
-            pointSeries.MarkerStyle = MarkerStyle.Circle;
-
-            // Добавляем точки
-            for (int i = 0; i < xValues.Length; i++)
-            {
-                pointSeries.Points.AddXY(xValues[i], yValues[i]);
-            }
-
-            // Строим график Гаусса
             for (double x = 7; x <= 17; x += 0.1)
             {
-                double y = GaussPolynomial(x);
-                gaussSeries.Points.AddXY(x, y);
+                double y = InterpolationPolynomial(x);
+                interpolationSeries.Points.AddXY(x, y);
             }
 
-            chart1.Series.Add(gaussSeries);
-            chart1.Series.Add(pointSeries);
+            chart1.Series.Add(interpolationSeries);
+            AddPointSeries(chart1);
         }
 
         private void DrawChart2()
         {
             chart2.Series.Clear();
-            
-            // Настройка области
-            if (chart2.ChartAreas.Count == 0)
-                chart2.ChartAreas.Add(new ChartArea());
-            
-            chart2.ChartAreas[0].AxisX.Title = "x";
-            chart2.ChartAreas[0].AxisY.Title = "y";
-            chart2.ChartAreas[0].AxisX.Minimum = 7;
-            chart2.ChartAreas[0].AxisX.Maximum = 17;
-            chart2.ChartAreas[0].AxisY.Minimum = -5;
-            chart2.ChartAreas[0].AxisY.Maximum = 20;
+            SetupChartArea(chart2);
 
-            // Серия для графика Лагранжа
             Series lagrangeSeries = new Series("Метод Лагранжа");
             lagrangeSeries.ChartType = SeriesChartType.Line;
             lagrangeSeries.Color = Color.Green;
             lagrangeSeries.BorderWidth = 2;
 
-            // Серия для точек
-            Series pointSeries = new Series("Исходные точки");
-            pointSeries.ChartType = SeriesChartType.Point;
-            pointSeries.Color = Color.Red;
-            pointSeries.MarkerSize = 8;
-            pointSeries.MarkerStyle = MarkerStyle.Circle;
-
-            // Добавляем точки
-            for (int i = 0; i < xValues.Length; i++)
-            {
-                pointSeries.Points.AddXY(xValues[i], yValues[i]);
-            }
-
-            // Строим график Лагранжа
             for (double x = 7; x <= 17; x += 0.1)
             {
                 double y = LagrangePolynomial(x);
@@ -123,72 +111,74 @@ namespace CompMathLab3
             }
 
             chart2.Series.Add(lagrangeSeries);
-            chart2.Series.Add(pointSeries);
+            AddPointSeries(chart2);
         }
 
         private void DrawChart3()
         {
             chart3.Series.Clear();
-            
-            // Настройка области
-            if (chart3.ChartAreas.Count == 0)
-                chart3.ChartAreas.Add(new ChartArea());
-            
-            chart3.ChartAreas[0].AxisX.Title = "x";
-            chart3.ChartAreas[0].AxisY.Title = "y";
-            chart3.ChartAreas[0].AxisX.Minimum = 7;
-            chart3.ChartAreas[0].AxisX.Maximum = 17;
-            chart3.ChartAreas[0].AxisY.Minimum = -5;
-            chart3.ChartAreas[0].AxisY.Maximum = 20;
+            SetupChartArea(chart3);
 
-            // Серия для графика Гаусса
-            Series gaussSeries = new Series("Метод Гаусса");
-            gaussSeries.ChartType = SeriesChartType.Line;
-            gaussSeries.Color = Color.Blue;
-            gaussSeries.BorderWidth = 2;
+            Series interpolationSeries = new Series("Интерполяционный полином (решение системы 3.1)");
+            interpolationSeries.ChartType = SeriesChartType.Line;
+            interpolationSeries.Color = Color.Blue;
+            interpolationSeries.BorderWidth = 2;
 
-            // Серия для графика Лагранжа
             Series lagrangeSeries = new Series("Метод Лагранжа");
             lagrangeSeries.ChartType = SeriesChartType.Line;
             lagrangeSeries.Color = Color.Green;
             lagrangeSeries.BorderWidth = 2;
-            lagrangeSeries.BorderDashStyle = ChartDashStyle.Dash; // Пунктир для отличия
+            lagrangeSeries.BorderDashStyle = ChartDashStyle.Dash;
 
-            // Серия для точек
-            Series pointSeries = new Series("Исходные точки");
-            pointSeries.ChartType = SeriesChartType.Point;
-            pointSeries.Color = Color.Red;
-            pointSeries.MarkerSize = 8;
-            pointSeries.MarkerStyle = MarkerStyle.Circle;
+            Series smoothingSeries = new Series("Сглаживающий метод (МНК)");
+            smoothingSeries.ChartType = SeriesChartType.Line;
+            smoothingSeries.Color = Color.Orange;
+            smoothingSeries.BorderWidth = 2;
 
-            // Добавляем точки
-            for (int i = 0; i < xValues.Length; i++)
-            {
-                pointSeries.Points.AddXY(xValues[i], yValues[i]);
-            }
-
-            // Строим графики
             for (double x = 7; x <= 17; x += 0.1)
             {
-                double yGauss = GaussPolynomial(x);
-                double yLagrange = LagrangePolynomial(x);
-                
-                gaussSeries.Points.AddXY(x, yGauss);
-                lagrangeSeries.Points.AddXY(x, yLagrange);
+                interpolationSeries.Points.AddXY(x, InterpolationPolynomial(x));
+                lagrangeSeries.Points.AddXY(x, LagrangePolynomial(x));
+                smoothingSeries.Points.AddXY(x, SmoothingPolynomial(x));
             }
 
-            chart3.Series.Add(gaussSeries);
+            chart3.Series.Add(interpolationSeries);
             chart3.Series.Add(lagrangeSeries);
-            chart3.Series.Add(pointSeries);
+            chart3.Series.Add(smoothingSeries);
+            AddPointSeries(chart3);
         }
 
-        // Метод Гаусса
-        private double GaussPolynomial(double x)
+        private void DrawChart4()
         {
-            return a0 + a1 * x + a2 * x * x + a3 * x * x * x + a4 * x * x * x * x;
+            chart4.Series.Clear();
+            SetupChartArea(chart4);
+
+            Series smoothingSeries = new Series("Сглаживающий метод (МНК)");
+            smoothingSeries.ChartType = SeriesChartType.Line;
+            smoothingSeries.Color = Color.Orange;
+            smoothingSeries.BorderWidth = 2;
+
+            for (double x = 7; x <= 17; x += 0.1)
+            {
+                smoothingSeries.Points.AddXY(x, SmoothingPolynomial(x));
+            }
+
+            chart4.Series.Add(smoothingSeries);
+            AddPointSeries(chart4);
         }
 
-        // Метод Лагранжа
+        private double InterpolationPolynomial(double x)
+        {
+            if (interpolationCoeffs == null) return 0;
+
+            double result = 0;
+            for (int i = 0; i < interpolationCoeffs.Length; i++)
+            {
+                result += interpolationCoeffs[i] * Math.Pow(x, i);
+            }
+            return result;
+        }
+
         private double LagrangePolynomial(double x)
         {
             double result = 0;
@@ -197,41 +187,25 @@ namespace CompMathLab3
             for (int i = 0; i < n; i++)
             {
                 double term = yValues[i];
-                
                 for (int j = 0; j < n; j++)
                 {
                     if (j != i)
-                    {
                         term *= (x - xValues[j]) / (xValues[i] - xValues[j]);
-                    }
                 }
-                
                 result += term;
             }
-            
             return result;
         }
 
-        // Проверка совпадения в узлах
-        private void ValidateMethods()
+        private double SmoothingPolynomial(double x)
         {
-            Console.WriteLine("Проверка в узлах интерполяции:");
-            Console.WriteLine("x\tf(x)\tГаусс\t\tЛагранж\t\tПогрешность Гаусса\tПогрешность Лагранжа");
-            
-            for (int i = 0; i < xValues.Length; i++)
-            {
-                double gauss = GaussPolynomial(xValues[i]);
-                double lagrange = LagrangePolynomial(xValues[i]);
-                double errorGauss = Math.Abs(gauss - yValues[i]);
-                double errorLagrange = Math.Abs(lagrange - yValues[i]);
-                
-                Console.WriteLine($"{xValues[i]}\t{yValues[i]}\t{gauss:F6}\t{lagrange:F6}\t{errorGauss:E6}\t\t{errorLagrange:E6}");
-            }
-        }
+            if (smoothingCoeffs == null) return 0;
 
-        private void chart3_Click(object sender, EventArgs e)
-        {
+            double result = 0;
+            for (int i = 0; i < smoothingCoeffs.Length; i++)
+                result += smoothingCoeffs[i] * Math.Pow(x, i);
 
+            return result;
         }
     }
 }

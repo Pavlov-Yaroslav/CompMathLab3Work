@@ -86,6 +86,11 @@ namespace CompMathLab2
                 Console.WriteLine($"x{i + 1} = {solution[i]:F6}");
             }
         }
+
+        public float[] GetSolution()
+        {
+            return solution;
+        }
     }
 
     class GaussianMainElement
@@ -202,6 +207,11 @@ namespace CompMathLab2
                 Console.WriteLine($"x{i + 1} = {solution[i]:F6}");
             }
         }
+
+        public float[] GetSolution()
+        {
+            return solution;
+        }
     }
 
     public static class GaussianMethod
@@ -222,12 +232,36 @@ namespace CompMathLab2
                 {
                     result[i, j] = A[i, j];
                 }
-
-                result[i, cols] = b[i]; // последний столбец
+                result[i, cols] = b[i];
             }
 
             return result;
         }
+
+        public static float[] SolveInterpolationSystem(double[] x, double[] y)
+        {
+            int n = x.Length;
+
+            float[,] A = new float[n, n];
+            float[] b = new float[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    A[i, j] = (float)Math.Pow(x[i], j);
+                }
+                b[i] = (float)y[i];
+            }
+
+            float[,] extendedMatrix = CreateExtendedMatrix(A, b);
+
+            var gaussSolver = new GaussianMainElement(extendedMatrix);
+            gaussSolver.Solve();
+
+            return gaussSolver.GetSolution();
+        }
+
         public static void Start(float[,] A, float[] b)
         {
             float[,] Matrix = CreateExtendedMatrix(A, b);

@@ -55,9 +55,9 @@
     </Compile>
     <Compile Include="GaussianMethod.cs" />
     <Compile Include="LangrangeMethod.cs" />
+    <Compile Include="LeastSquaresMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ZeydelMethod.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
